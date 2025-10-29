@@ -55,7 +55,7 @@ config_setting(
     values = {"define": "enable_mysql_driver=true"},
 )
 
-LINK_PYTHON_OPTS = PLACEHOLDER-PYTHON3.X-CONFIG
+LINK_PYTHON_OPTS = ["-L/home/engine/.local/share/uv/python/cpython-3.9.20-linux-x86_64-gnu/lib  -L/home/engine/.local/share/uv/python/cpython-3.9.20-linux-x86_64-gnu/lib  -lpthread -ldl  -lutil -lm -lm "] + ["-lpython3.9"]
 
 cc_library(
   name = "python3_lib",
