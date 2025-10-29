@@ -1,0 +1,110 @@
+#ifndef SRC_FEDIUX_ALGORITHM_LOGISTIC_H_
+#define SRC_FEDIUX_ALGORITHM_LOGISTIC_H_
+
+#include <time.h>
+#include <stdlib.h>
+#include <math.h>
+#include <algorithm>
+#include <exception>
+#include <fstream>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
+#include <utility>
+#include <memory>
+
+#include "Eigen/Dense"
+#include "src/fediux/algorithm/aby3ML.h"
+#include "src/fediux/algorithm/base.h"
+#include "src/fediux/algorithm/linear_model_gen.h"
+#include "src/fediux/algorithm/plainML.h"
+#include "src/fediux/algorithm/regression.h"
+#include "src/fediux/data_store/driver.h"
+#include "cryptoTools/Common/Defines.h"
+#include "aby3/sh3/Sh3FixedPoint.h"
+
+namespace fediux {
+#ifdef MPC_SOCKET_CHANNEL
+using Session = oc::Session;
+using IOService = oc::IOService;
+using SessionMode = oc::SessionMode;
+#endif
+using Decimal = aby3::Decimal;
+const Decimal D = Decimal::D20;
+eMatrix<double> logistic_main(sf64Matrix<D> &train_data_0_1,
+                              sf64Matrix<D> &train_label_0_1,
+                              sf64Matrix<D> &W2_0_1,
+                              sf64Matrix<D> &test_data_0_1,
+                              sf64Matrix<D> &test_label_0_1, aby3ML &p, int B,
+                              int IT, int pIdx);
+
+class LogisticRegressionExecutor : public AlgorithmBase {
+ public:
+  explicit LogisticRegressionExecutor(
+      PartyConfig &config, std::shared_ptr<DatasetService> dataset_service);
+  int loadParams(fediux::rpc::Task &task) override;
+  int loadDataset(void) override;
+  int execute() override;
+
+  int constructShares(void);
+  int saveModel(void);
+  retcode InitEngine() override;
+
+ protected:
+  retcode ParseExcludeColumns(fediux::rpc::Task &task_config);
+
+ private:
+  int _ConstructShares(sf64Matrix<D> &w, sf64Matrix<D> &train_data,
+                       sf64Matrix<D> &train_label, sf64Matrix<D> &test_data,
+                       sf64Matrix<D> &test_label);
+
+  int _LoadDataset(const std::string& filename);
+  uint16_t NextPartyId() {return (local_id_ + 1) % 3;}
+  uint16_t PrevPartyId() {return (local_id_ + 2) % 3;}
+
+  template<typename T>
+  retcode FillTrainAndTestData(std::shared_ptr<arrow::Array> chunk_array,
+                               const int64_t train_fill_start_pos,
+                               const int64_t test_fill_start_pos,
+                               const int col_index,
+                               int64_t train_length) {
+    auto array = std::dynamic_pointer_cast<T>(chunk_array);
+    if (array == nullptr) {
+      return retcode::FAIL;
+    }
+    int64_t train_data_pos = train_fill_start_pos;
+    int64_t test_data_pos = test_fill_start_pos;
+    for (int64_t i = 0; i < train_length; i++) {
+      this->train_input_(train_data_pos, col_index) = array->Value(i);
+      train_data_pos++;
+    }
+    for (int64_t i = train_length; i < array->length(); i++) {
+      this->test_input_(test_data_pos, col_index) = array->Value(i);
+      test_data_pos++;
+    }
+    return retcode::SUCCESS;
+  }
+
+ private:
+  std::string model_file_name_;
+  std::string model_name_;
+  uint16_t local_id_;
+  eMatrix<double> train_input_;
+  eMatrix<double> test_input_;
+  eMatrix<double> model_;
+  aby3ML engine_;
+
+  // Logistic regression parameters
+  std::string train_input_filepath_;
+  std::string test_input_filepath_;
+  std::string train_dataset_id_;
+  bool is_dataset_detail_{false};
+  std::vector<std::string> columns_exclude_;
+  int batch_size_;
+  int num_iter_;
+};
+
+}  // namespace fediux
+
+#endif  // SRC_FEDIUX_ALGORITHM_LOGISTIC_H_

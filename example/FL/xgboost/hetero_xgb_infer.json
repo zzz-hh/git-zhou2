@@ -1,0 +1,24 @@
+
+
+{
+    "party_info": {
+        "task_manager": "127.0.0.1:50050"
+    },
+    "component_params": {
+        "roles": {
+            "client": "Bob"
+        },
+        "common_params": {
+            "model": "HFL_XGBoost",
+            "process": "predict",
+            "task_name": "HFL_XGBoost_predict"
+        },
+        "role_params": {
+            "Bob": {
+                "data_set": "multiclass_hfl_test_client1",
+                "model_path": "data/result/xgboost/Bob_model.pkl",
+                "predict_path": "data/result/xgboost/Bob_predict.csv"
+            }
+        }
+    }
+}

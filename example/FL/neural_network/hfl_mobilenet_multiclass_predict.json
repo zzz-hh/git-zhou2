@@ -1,0 +1,23 @@
+{
+    "party_info": {
+        "task_manager": "127.0.0.1:50050"
+    },
+    "component_params": {
+        "roles": {
+            "client": "Bob"
+        },
+        "common_params": {
+            "model": "HFL_ResNet",
+            "process": "predict",
+            "task_name": "HFL_ResNet_multiclass_predict",
+            "resize": [64, 64]
+        },
+        "role_params": {
+            "Bob": {
+                "data_set": "mnist_test_client1",
+                "model_path": "data/result/MobileNet/Bob_model.pkl",
+                "predict_path": "data/result/MobileNet/Bob_predict.csv"
+            }
+        }
+    }
+}

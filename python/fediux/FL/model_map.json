@@ -1,0 +1,123 @@
+{
+    "example": {
+        "guest": "fediux.FL.example.example_guest.ExampleGuest",
+        "host": "fediux.FL.example.example_host.ExampleHost"
+    },
+    "HFL_logistic_regression": {
+        "client": "fediux.FL.logistic_regression.hfl_client.LogisticRegressionClient",
+        "server": "fediux.FL.logistic_regression.hfl_server.LogisticRegressionServer"
+    },
+    "VFL_logistic_regression": {
+        "guest": "fediux.FL.logistic_regression.vfl_guest.LogisticRegressionGuest",
+        "host": "fediux.FL.logistic_regression.vfl_host.LogisticRegressionHost",
+        "coordinator": "fediux.FL.logistic_regression.vfl_coordinator.LogisticRegressionCoordinator"
+    },
+    "HFL_linear_regression": {
+        "client": "fediux.FL.linear_regression.hfl_client.LinearRegressionClient",
+        "server": "fediux.FL.linear_regression.hfl_server.LinearRegressionServer"
+    },
+    "VFL_linear_regression": {
+        "guest": "fediux.FL.linear_regression.vfl_guest.LinearRegressionGuest",
+        "host": "fediux.FL.linear_regression.vfl_host.LinearRegressionHost",
+        "coordinator": "fediux.FL.linear_regression.vfl_coordinator.LinearRegressionCoordinator"
+    },
+    "HFL_neural_network": {
+        "client": "fediux.FL.neural_network.hfl_client.NeuralNetworkClient",
+        "server": "fediux.FL.neural_network.hfl_server.NeuralNetworkServer"
+    },
+    "HFL_CNN": {
+        "client": "fediux.FL.neural_network.hfl_cnn_client.CNNClient",
+        "server": "fediux.FL.neural_network.hfl_cnn_server.CNNServer"
+    },
+    "HFL_Kmeans": {
+        "client": "fediux.FL.kmeans.kmeans_client.KmeansClient",
+        "server": "fediux.FL.kmeans.kmeans_server.KmeansServer"
+    },
+    "VFL_Kmeans": {
+        "guest": "fediux.FL.kmeans.vfl_guest.KmeansGuest",
+        "host": "fediux.FL.kmeans.vfl_host.KmeansHost"
+    },
+    "HFL_randomforest": {
+        "client": "fediux.FL.randomforest.random_forest_client.RandomForestClient",
+        "server": "fediux.FL.randomforest.random_forest_server.RandomForestServer"
+    },
+    "HFL_lightGBM": {
+        "client": "fediux.FL.lightGBM.lightGBM_client.LightGBMClient",
+        "server": "fediux.FL.lightGBM.lightGBM_server.LightGBMServer"
+    },
+    "HFL_fasttext": {
+        "client": "fediux.FL.fasttext.hfl_ftt_client.FasttextClient",
+        "server": "fediux.FL.fasttext.hfl_ftt_server.FasttextServer"
+    },
+    "HFL_textcnn": {
+        "client": "fediux.FL.textcnn.hfl_tcnn_client.TextCNNClient",
+        "server": "fediux.FL.textcnn.hfl_tcnn_server.TextCNNServer"
+    },
+    "HFL_bert": {
+        "client": "fediux.FL.bert.Bert_client.BertClient",
+        "server": "fediux.FL.bert.Bert_server.BertServer"
+    },
+    "HFL_pegasus": {
+        "client": "fediux.FL.pegasus.pegasus_client.PegasusClient",
+        "server": "fediux.FL.pegasus.pegasus_server.PegasusServer"
+    },
+    "HFL_ResNet": {
+        "client": "fediux.FL.neural_network.hfl_resnet_client.Client",
+        "server": "fediux.FL.neural_network.hfl_resnet_server.Server"
+    },
+    "HFL_MobileNet": {
+        "client": "fediux.FL.neural_network.hfl_mobilenet_client.Client",
+        "server": "fediux.FL.neural_network.hfl_mobilenet_server.Server"
+    },
+    "chatglm": {
+        "client": "fediux.FL.chatglm.ChatGlm_client.ChatGlmClient",
+        "server": "fediux.FL.chatglm.ChatGlm_server.ChatGlmServer"
+    },
+    "YOLO": {
+        "client": "fediux.FL.yolo.yolo_client.YOLOClient",
+        "server": "fediux.FL.yolo.yolo_server.YOLOServer"
+    },
+    "minidiffusion": {
+        "client":"fediux.FL.AIGC.minidiffusion_client.minidiffusionClient",
+        "server":"fediux.FL.AIGC.minidiffusion_server.minidiffusionServer"
+
+    },
+    "HFL_decision_tree": {
+        "client":"fediux.FL.decision_tree.hfl_client.DecisionTreeClient",
+        "server":"fediux.FL.decision_tree.hfl_server.DecisionTreeServer"
+    },
+    "HFL_SVM": {
+        "client": "fediux.FL.svm.hfl_client.SVMClient",
+        "server": "fediux.FL.svm.hfl_server.SVMServer"
+    },
+    "HFL_XGBoost": {
+        "client": "fediux.FL.xgboost.xgb_client.XGBClient",
+        "server": "fediux.FL.xgboost.xgb_server.XGBServer"
+    },
+    "HeteroXGB": {
+        "guest": "fediux.FL.xgboost.gbt.VGBTGuest",
+        "host": "fediux.FL.xgboost.gbt.VGBTHost"
+    },
+    "HeteroXGBInfer": {
+        "guest": "fediux.FL.xgboost.gbt.VGBGuestInfer",
+        "host": "fediux.FL.xgboost.gbt.VGBTHostInfer"
+    },
+    "DataAlign": {
+        "executor": "fediux.plain_data_util.data_align.DataAlign"
+    },
+    "FL_Preprocess": {
+        "guest": "fediux.FL.preprocessing.pipeline.Pipeline",
+        "host": "fediux.FL.preprocessing.pipeline.Pipeline",
+        "client": "fediux.FL.preprocessing.pipeline.Pipeline",
+        "server": "fediux.FL.preprocessing.pipeline.Pipeline"
+    },
+    "FL_Stats": {
+        "guest": "fediux.FL.stats.pipeline.Pipeline",
+        "host": "fediux.FL.stats.pipeline.Pipeline",
+        "client": "fediux.FL.stats.pipeline.Pipeline",
+        "server": "fediux.FL.stats.pipeline.Pipeline"
+    },
+    "PythonEngine": {
+        "executor": "fediux.engine.engine.PythonEngine"
+    }
+}

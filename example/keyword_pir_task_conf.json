@@ -1,0 +1,47 @@
+{
+  "task_type": "PIR_TASK",
+  "task_name": "keyword_pir_task",
+  "task_lang": "proto",
+  "task_code": {
+    "code_file_path": "",
+    "code": ""
+  },
+  "params": {
+    "clientData": {
+      "description": "query data",
+      "type": "STRING",
+      "value": [
+        "lLAnqwEihmGXxVPZZESncfgaaI,ZIhoPpMEmHPSFUoqUgUHBnMUddmTVwHfxEsqGg",
+        "RdtLFTxlxrqGlohnSMfYculjIO,gWagTnxGXpIYdGeFwxieQCEinNYapTNhicCcsA",
+        "GDdfeQLBJTkRvSENhVLyuajxWo,inZTaXVvvpuXtsLVaezncWRYmoERXTXhZrzdSy"
+      ]
+    },
+    "pirType": {
+      "description": "ID_PIR = 0 [Unimplement]; KEY_PIR = 1;",
+      "type": "INT32",
+      "value": 1
+    },
+    "outputFullFilename": {
+      "description": "path for client save query result",
+      "type": "STRING",
+      "value": "data/result/pir_result.csv"
+    },
+    "QueryConfig": {
+      "type": "OBJECT",
+      "value": {
+        "SERVER": {
+          "key_columns": [0,1],
+          "label_columns": [2,3]
+        },
+        "CLIENT": {
+          "key_columns": []
+        }
+      }
+    }
+  },
+  "party_datasets": {
+    "SERVER": {
+      "SERVER": "keyword_pir_server_data"
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+    "party_info": {
+        "task_manager": "127.0.0.1:50050"
+    },
+    "component_params": {
+        "roles": {
+            "server": "Alice",
+            "client": [
+                "Bob",
+                "Charlie"
+            ]
+        },
+        "common_params": {
+            "model": "HFL_pegasus",
+            "method": "Plaintext",
+            "process": "train",
+            "task_name": "HFL_pegasus_plaintext_train",
+            "learning_rate": 1e-3,
+            "batch_size": 2,
+            "max_length": 1024,
+            "max_target_length": 64,
+            "global_epoch": 3,
+            "local_epoch": 4,
+            "id": "id",
+            "label": "summary",
+            "print_metrics": true
+        },
+        "role_params": {
+            "Bob": {
+                "data_set": "text_generation_hfl_train_client1",
+                "pretrained_model": "model/Randeng-Pegasus-238M-Summary-Chinese",
+                "model_path": "data/result/Bob_pegasus",
+                "metric_path": "data/result/Bob_metrics.json"
+            },
+            "Charlie": {
+                "data_set": "text_generation_hfl_train_client2",
+                "pretrained_model": "model/Randeng-Pegasus-238M-Summary-Chinese",
+                "model_path": "data/result/Charlie_pegasus",
+                "metric_path": "data/result/Charlie_metrics.json"
+            },
+            "Alice": {
+                "data_set": "fl_fake_data",
+                "metric_path": "data/result/server_metrics.json"
+            }
+        }
+    }
+}

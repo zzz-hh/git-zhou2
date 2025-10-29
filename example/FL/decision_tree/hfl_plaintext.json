@@ -1,0 +1,42 @@
+{
+    "party_info": {
+        "task_manager": "127.0.0.1:50050"
+    },
+    "component_params": {
+        "roles": {
+            "server": "Alice",
+            "client": [
+                "Bob",
+                "Charlie"
+            ]
+        },
+        "common_params": {
+            "model": "HFL_decision_tree",
+            "method": "Plaintext",
+            "process": "train",
+            "task_name": "HFL_decision_tree_plaintext_train",
+            "max_depth": 5,
+            "selected_column": null,
+            "id": "id",
+            "label": "y",
+            "print_metrics": true,
+            "test_size": 0.2
+        },
+        "role_params": {
+            "Bob": {
+                "data_set": "multiclass_hfl_train_client1",
+                "model_path": "data/result/decision_tree/Bob_model.pkl",
+                "metric_path": "data/result/decision_tree/Bob_metrics.json"
+            },
+            "Charlie": {
+                "data_set": "multiclass_hfl_train_client2",
+                "model_path": "data/result/decision_tree/Charlie_model.pkl",
+                "metric_path": "data/result/decision_tree/Charlie_metrics.json"
+            },
+            "Alice": {
+                "data_set": "fl_fake_data",
+                "metric_path": "data/result/decision_tree/server_metrics.json"
+            }
+        }
+    }
+}

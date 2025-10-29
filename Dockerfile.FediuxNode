@@ -1,0 +1,53 @@
+FROM yfzx/fediux-builder:latest AS builder
+
+FROM docker.1ms.run/ubuntu:20.04 AS runner
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV LANG=C.UTF-8
+ENV LC_ALL=C.UTF-8
+ENV PYTHONIOENCODING=utf-8
+
+# 设置时区和软件源
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && \
+    sed -i 's|http://archive.ubuntu.com/ubuntu/|http://mirrors.aliyun.com/ubuntu/|g' /etc/apt/sources.list && \
+    sed -i 's|http://security.ubuntu.com/ubuntu/|http://mirrors.aliyun.com/ubuntu/|g' /etc/apt/sources.list
+
+# Install dependencies
+RUN  apt update \
+  && apt install -y python3 python3-dev gcc-8 g++-8 python-dev libgmp-dev python3-pip tzdata cmake libmysqlclient-dev chrpath \
+  && apt install -y automake ca-certificates git libtool m4 patch pkg-config unzip make wget curl zip ninja-build npm locales \
+  && update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 800 --slave /usr/bin/g++ g++ /usr/bin/g++-8 \
+  && locale-gen en_US.UTF-8 \
+  && rm -rf /var/lib/apt/lists/*
+
+ENV TZ=Asia/Shanghai
+
+COPY --from=builder /src/bazel-bin.tar.gz /opt/bazel-bin.tar.gz
+COPY --from=builder /src/src/fediux/protos/ /app/src/fediux/protos/
+
+COPY python/ /app/python/
+COPY config/ /app/config/
+COPY example/ /app/example/
+COPY data/ /app/data/
+
+WORKDIR /app
+
+# Copy opt_paillier_c2py.so linkcontext.so to /app/python, this enable setup.py find it.
+RUN tar zxf /opt/bazel-bin.tar.gz \
+  && mkdir log
+
+RUN ln -s -f bazel-bin/cli fediux-cli
+RUN ln -s -f bazel-bin/node fediux-node
+
+WORKDIR /app/python
+
+RUN python3 -m pip install --upgrade pip -i https://pypi.tuna.tsinghua.edu.cn/simple \
+  && python3 -m pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple \
+  && pip install -e . \
+  && rm -rf /root/.cache/pip/
+
+
+WORKDIR /app
+
+# gRPC server port
+EXPOSE 50050

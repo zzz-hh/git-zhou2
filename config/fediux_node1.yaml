@@ -1,0 +1,174 @@
+version: 1.0
+
+node: "node1"
+location: "fediux-node1"
+use_tls: false
+
+grpc_port: 50051
+# public_ip_proxy:
+#   mode: "grpc"
+#   ip:  "127.0.0.1"
+#   port: 30004
+#   use_tls: false
+
+#certificate:
+#  root_ca: "data/cert/ca.crt"
+#  key: "data/cert/node0.key"
+#  cert: "data/cert/node0.crt"
+
+proxy_server:
+  mode: "grpc"
+  ip:  "fediux-node1"
+  port: 50051
+  use_tls: false
+
+meta_service:
+  mode: "grpc"
+  ip: "fediux-meta1"
+  port: 9099
+  use_tls: false
+
+# default storage path
+# storage_path: "data"
+
+datasets:
+  # ABY3 LR test case datasets
+  - description: "train_party_1"
+    model: "csv"
+    source: "data/train_party_1.csv"
+  - description: "test_party_1"
+    model: "csv"
+    source: "data/test_party_1.csv"
+
+  # MNIST test case datasets
+  - description: "test_party_1_self"
+    model: "csv"
+    source: "data/falcon/dataset/MNIST/input_1"
+  - description: "test_party_1_next"
+    model: "csv"
+    source: "data/falcon/dataset/MNIST/input_2"
+
+  # PIR test case dataset
+  - description: "pir_server_data"
+    model: "csv"
+    source: "data/pir_server.csv"
+
+  # keyword PIR test case dataset
+  - description: "keyword_pir_server_data"
+    model: "csv"
+    source: "data/keyword_pir_server.csv"
+
+  # PSI test case dataset
+  - description: "psi_server_data"
+    model: "csv"
+    source: "data/server_e.csv"
+
+  - description: "psi_server_data_db"
+    model: "sqlite"
+    table_name: "psi_server_data"
+    source: "data/server_e.db3"
+
+  # FL binclass
+  - description: "binclass_vfl_train_host"
+    model: "csv"
+    source: "data/FL/binclass/vfl/train/host.csv"
+  - description: "binclass_vfl_test_host"
+    model: "csv"
+    source: "data/FL/binclass/vfl/test/host.csv"
+  - description: "binclass_hfl_train_client1"
+    model: "csv"
+    source: "data/FL/binclass/hfl/train/client1.csv"
+  - description: "binclass_hfl_test_client1"
+    model: "csv"
+    source: "data/FL/binclass/hfl/test/client1.csv"
+
+  # FL multiclass
+  - description: "multiclass_vfl_train_host"
+    model: "csv"
+    source: "data/FL/multiclass/vfl/train/host.csv"
+  - description: "multiclass_vfl_test_host"
+    model: "csv"
+    source: "data/FL/multiclass/vfl/test/host.csv"
+  - description: "multiclass_hfl_train_client1"
+    model: "csv"
+    source: "data/FL/multiclass/hfl/train/client1.csv"
+  - description: "multiclass_hfl_test_client1"
+    model: "csv"
+    source: "data/FL/multiclass/hfl/test/client1.csv"
+
+  # text classification
+  - description: "text_classification_hfl_train_client1"
+    model: "csv"
+    source: "data/FL/text/classification/client1.csv"
+
+  # text generation
+  - description: "text_generation_hfl_train_client1"
+    model: "csv"
+    source: "data/FL/text/generation/client1.csv"
+
+  # FL cluster
+  - description: "cluster_hfl_train_client1"
+    model: "csv"
+    source: "data/FL/cluster/client1.csv"
+
+  - description: "cluster_vfl_train_host"
+    model: "csv"
+    source: "data/FL/cluster/host.csv"
+
+  # FL randomforest
+  - description: "randomforest_hfl_train_client1"
+    model: "csv"
+    source: "data/FL/randomforest/iris1.csv"
+
+  # FL lightGBM
+  - description: "lightGBM_hfl_train_client1"
+    model: "csv"
+    source: "data/FL/lightGBM/iris1.csv"
+
+  # FL regression
+  - description: "regression_hfl_train_client1"
+    model: "csv"
+    source: "data/FL/regression/hfl/train/client1.csv"
+  - description: "regression_hfl_test_client1"
+    model: "csv"
+    source: "data/FL/regression/hfl/test/client1.csv"
+
+  # FL mnist image classification
+  - description: "mnist_train_client1"
+    model: "image"
+    image_dir: "data/FL/mnist/train/client1.zip"
+    annotations_file: "data/FL/mnist/train/client1_annotations.csv"
+  - description: "mnist_test_client1"
+    model: "image"
+    image_dir: "data/FL/mnist/test/client1.zip"
+    annotations_file: "data/FL/mnist/test/client1_annotations.csv"
+  - description: "archive_train_client1"
+    model: "image"
+    image_dir: "data/FL/archive/train/client1.zip"
+    annotations_file: "data/FL/archive/train/client1_annotations.csv"
+
+  # FL preprocess
+  - description: "preprocess_vfl_train_host"
+    model: "csv"
+    source: "data/FL/preprocess/vfl/train/host.csv"
+  - description: "preprocess_vfl_test_host"
+    model: "csv"
+    source: "data/FL/preprocess/vfl/test/host.csv"
+  - description: "preprocess_hfl_train_client1"
+    model: "csv"
+    source: "data/FL/preprocess/hfl/train/client1.csv"
+  - description: "preprocess_hfl_test_client1"
+    model: "csv"
+    source: "data/FL/preprocess/hfl/test/client1.csv"
+
+  # MPC statistics & arithmetic
+  - description: "mpc_statistics_1"
+    model: "csv"
+    source: "data/mpc_test.csv"
+  - description: "mpc_arithmetic_1"
+    model: "csv"
+    source: "data/mpc_arithmetic_1.csv"
+  # no meaningful dataset, just used to represent this party
+  - description: "FAKE_DATA_PARTY_1"
+    model: "csv"
+    source: "data/FL/fake.csv"

@@ -1,0 +1,30 @@
+{
+    "party_info": {
+        "task_manager": "127.0.0.1:50050"
+    },
+    "component_params": {
+        "roles": {
+            "server": "Alice",
+            "client": [
+                "Bob"
+            ]
+        },
+        "common_params": {
+            "model": "YOLO",
+            "process": "train",
+            "global_epoch": 5
+        },
+        "role_params": {
+            "Alice": {
+                "data_set": "fl_fake_data"
+            },
+            "Bob": {
+                "path": "/app/yolov5",
+                "data_set": "FAKE_DATA_PARTY_1",
+                "data_config": "data/coco1.yaml",
+                "num_examples": 10,
+                "model_path": "/app/result/yolov5/weight/last.pt"
+            }
+        }
+    }
+}

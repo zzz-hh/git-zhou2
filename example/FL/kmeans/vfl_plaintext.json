@@ -1,0 +1,41 @@
+{
+    "party_info": {
+        "task_manager": "127.0.0.1:50050"
+    },
+    "component_params": {
+        "roles": {
+            "host": "Bob",
+            "guest": [
+                "Charlie"
+            ]
+        },
+        "common_params": {
+            "model": "VFL_Kmeans",
+            "method": "Plaintext",
+            "process": "train",
+            "task_name": "VFL_kmeans_plaintext_train",
+            "psi": "KKRT",
+            "max_iter": 100,
+            "k": 3,
+            "selected_column": ["feature_0","feature_1"],
+            "id": "id",
+            "print_metrics": true
+        },
+        "role_params": {
+            "Bob": {
+                "data_set": "cluster_vfl_train_host",
+                "selected_column": null,
+                "id": "id",
+                "model_path": "data/result/Bob_model.pkl",
+                "metric_path": "data/result/Bob_metrics.json"
+            },
+            "Charlie": {
+                "data_set": "cluster_vfl_train_guest",
+                "selected_column": null,
+                "id": "id",
+                "model_path": "data/result/Charlie_model.pkl",
+                "metric_path": "data/result/Charlie_metrics.json"
+            }
+        }
+    }
+}

@@ -1,0 +1,25 @@
+{
+    "party_info": {
+        "task_manager": "127.0.0.1:50050"
+    },
+    "component_params": {
+        "roles": {
+            "client": "Bob"
+        },
+        "common_params": {
+            "model": "chatglm",
+            "process": "predict",
+            "task_name": "chatglm_predict"
+        },
+        "role_params": {
+            "Bob": {
+                "path": "/app/ChatGLM-6B/ptuning",
+                "data_set": "FAKE_DATA_PARTY_1",
+                "model_path": "/app/data/result/chatglm/pytorch_model.bin",
+                "predict_path": "/app/data/result/chatglm/predict.csv",
+                "source": "AdGen1/train.json",
+                "model_name_or_path": "/app/model/chatglm-6b-int4"
+            }
+        }
+    }
+}

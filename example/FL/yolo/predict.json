@@ -1,0 +1,24 @@
+{
+    "party_info": {
+        "task_manager": "127.0.0.1:50050"
+    },
+    "component_params": {
+        "roles": {
+            "client": "Bob"
+        },
+        "common_params": {
+            "model": "YOLO",
+            "process": "predict",
+            "task_name": "yolov5_predict"
+        },
+        "role_params": {
+            "Bob": {
+                "path": "/app/yolov5",
+                "data_set": "FAKE_DATA_PARTY_1",
+                "model_path": "data/result/yolov5/weight/last.pt",
+                "predict_path": "data/result/yolov5/predict",
+                "source": "datasets/coco1/images/train2017"
+            }
+        }
+    }
+}

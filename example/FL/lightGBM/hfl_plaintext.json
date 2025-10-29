@@ -1,0 +1,45 @@
+{
+    "party_info": {
+        "task_manager": "127.0.0.1:50050"
+    },
+    "component_params": {
+        "roles": {
+            "server": "Alice",
+            "client": [
+                "Bob",
+                "Charlie"
+            ]
+        },
+        "common_params": {
+            "model": "HFL_lightGBM",
+            "method": "Plaintext",
+            "process": "train",
+            "task_name": "HFL_lightGBM_train",
+            "global_epoch": 2,
+            "local_epoch": 1,
+            "n_estimators": 200,
+            "learning_rate": 0.01,
+            "test_size": 0.2,
+            "selected_column": ["feature1","feature2","feature3","feature4","y"],
+            "id": "id",
+            "label": "y",
+            "print_metrics": true
+        },
+        "role_params": {
+            "Bob": {
+                "data_set": "lightGBM_hfl_train_client1",
+                "model_path": "data/result/lightGBM/Bob_model.pkl",
+                "metric_path": "data/result/lightGBM/Bob_metrics.json"
+            },
+            "Charlie": {
+                "data_set": "lightGBM_hfl_train_client2",
+                "model_path": "data/result/lightGBM/Charlie_model.pkl",
+                "metric_path": "data/result/lightGBM/Charlie_metrics.json"
+            },
+            "Alice": {
+                "data_set": "lightGBM_hfl_train_client0",
+                "metric_path": "data/result/lightGBM/server_metrics.json"
+            }
+        }
+    }
+}

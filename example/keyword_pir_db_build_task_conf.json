@@ -1,0 +1,34 @@
+{
+  "task_type": "PIR_TASK",
+  "task_name": "keyword_pir_generate_db_task",
+  "task_lang": "proto",
+  "task_code": {
+    "code_file_path": "",
+    "code": ""
+  },
+  "params": {
+    "pirType": {
+      "description": "ID_PIR = 0 [Unimplement]; KEY_PIR = 1;",
+      "type": "INT32",
+      "value": 1
+    },
+    "DbInfo": {
+      "description": "create sender db offline, format of file_name: concat datasetid with key columns, seperated by _",
+      "type": "STRING",
+      "value": "data/cache/keyword_pir_server_data_0_1"
+    },
+    "QueryConfig": {
+      "type": "OBJECT",
+      "value": {
+        "SERVER": {
+          "key_columns": [0,1]
+        }
+      }
+    }
+  },
+  "party_datasets": {
+    "SERVER": {
+      "SERVER": "keyword_pir_server_data"
+    }
+  }
+}

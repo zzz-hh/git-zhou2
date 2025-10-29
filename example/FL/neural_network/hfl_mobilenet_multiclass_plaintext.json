@@ -1,0 +1,45 @@
+{
+    "party_info": {
+        "task_manager": "127.0.0.1:50050"
+    },
+    "component_params": {
+        "roles": {
+            "server": "Alice",
+            "client": [
+                "Bob",
+                "Charlie"
+            ]
+        },
+        "common_params": {
+            "model": "HFL_MobileNet",
+            "method": "Plaintext",
+            "process": "train",
+            "task_name": "HFL_MobileNet_multiclass_plaintext_train",
+            "learning_rate": 1e-3,
+            "alpha": 1e-4,
+            "optimizer": "adam",
+            "batch_size": 100,
+            "global_epoch": 5,
+            "local_epoch": 1,
+            "print_metrics": true,
+            "resize": [64, 64],
+            "test_size": 0.2
+        },
+        "role_params": {
+            "Bob": {
+                "data_set": "mnist_train_client1",
+                "model_path": "data/result/MobileNet/Bob_model.pkl",
+                "metric_path": "data/result/MobileNet/Bob_metrics.json"
+            },
+            "Charlie": {
+                "data_set": "mnist_train_client2",
+                "model_path": "data/result/MobileNet/Charlie_model.pkl",
+                "metric_path": "data/result/MobileNet/Charlie_metrics.json"
+            },
+            "Alice": {
+                "data_set": "fl_fake_data",
+                "metric_path": "data/result/MobileNet/server_metrics.json"
+            }
+        }
+    }
+}

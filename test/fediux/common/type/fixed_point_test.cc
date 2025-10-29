@@ -1,0 +1,18 @@
+#include <string>
+#include <vector>
+
+#include "gtest/gtest.h"
+#include "src/fediux/common/type/fixed_point.h"
+
+
+namespace fediux {
+
+TEST(FixedPointTest, fp_add) {
+  fp<i64, D8> fp_a(10);
+  fp<i64, D8> fp_b(100);
+  fp<i64, D8> fp_c;
+  fp_c = fp_a + fp_b;
+  EXPECT_DOUBLE_EQ(110, (double)fp_c);
+}
+
+}  // namespace fediux

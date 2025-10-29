@@ -1,0 +1,37 @@
+{
+    "party_info": {
+        "task_manager": "127.0.0.1:50050"
+    },
+    "component_params": {
+        "roles": {
+            "server": "Alice",
+            "client": [
+                "Bob"
+            ]
+        },
+        "common_params": {
+            "model": "chatglm",
+            "process": "train",
+            "global_epoch": 5,
+            "local_epoch": 1,
+            "learning_rate": 1e-2
+        },
+        "role_params": {
+            "Bob": {
+                "path": "/app/ChatGLM-6B/ptuning",
+                "train_file": "AdGen1/train.json",
+                "validation_file": "AdGen1/dev.json",
+                "prompt_column": "content",
+                "response_column": "summary",
+                "model_name_or_path": "/app/model/chatglm-6b-int4",
+                "output_dir": "output/Bob_result",
+                "num_examples": 1,
+                "data_set": "FAKE_DATA_PARTY_1",
+                "model_path": "/app/data/result/chatglm/pytorch_model.bin"
+            },
+            "Alice": {
+                "data_set": "FAKE_DATA_PARTY_0"
+            }
+        }
+    }
+}

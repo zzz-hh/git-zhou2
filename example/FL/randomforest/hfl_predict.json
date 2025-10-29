@@ -1,0 +1,28 @@
+{
+    "party_info": {
+        "task_manager": "127.0.0.1:50050"
+    },
+    "component_params": {
+        "roles": {
+            "client": "Bob"
+        },
+        "common_params": {
+            "model": "HFL_randomforest",
+            "method": "Plaintext",
+            "process": "predict",
+            "task_name": "HFL_randomforest_predict",
+            "test_size": 0.2,
+            "selected_column": ["feature1","feature2","feature3","feature4","y"],
+            "label": "y",
+            "id": "id",
+            "print_metrics": false
+        },
+        "role_params": {
+            "Bob": {
+                "data_set": "randomforest_hfl_train_client1",
+                "model_path": "data/result/randomforest/Bob_model.pkl",
+                "predict_path": "data/result/randomforest/Bob_predict.csv"
+            }
+        }
+    }
+}
