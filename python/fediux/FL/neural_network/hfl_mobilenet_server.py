@@ -23,6 +23,7 @@ class Server(BaseModel):
 
     def run(self):
         process = self.common_params['process']
+        logger.info("Running Horizontal MobileNet algorithm")
         logger.info(f"process: {process}")
         if process == 'train':
             self.train()

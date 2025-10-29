@@ -18,6 +18,7 @@ class FasttextServer(BaseModel):
 
     def run(self):
         process = self.common_params['process']
+        logger.info("Running Horizontal FastText algorithm")
         logger.info(f"process: {process}")
         if process == 'train':
             self.train()
