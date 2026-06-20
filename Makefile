@@ -31,7 +31,7 @@ ifeq ($(debug), y)
 endif
 
 release:
-	bazel build --config=PLATFORM_HARDWARE $(BUILD_FLAG) ${TARGET}
+	bazel build --config=linux_x86_64 $(BUILD_FLAG) ${TARGET}
 	rm -f fediux-cli
 	ln -s -f bazel-bin/cli fediux-cli
 	rm -f fediux-node

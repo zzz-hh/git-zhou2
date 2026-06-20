@@ -17,6 +17,8 @@ class TextCNNServer(BaseModel):
 
     def run(self):
         process = self.common_params['process']
+        role_name = self.role_params.get('self_name', 'unknown')
+        logger.info(f"Running Horizontal TextCNN algorithm, role={role_name}, process={process}")
         logger.info(f"process: {process}")
         if process == 'train':
             self.train()
